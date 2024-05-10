@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+          crossorigin="anonymous">
+    <title>Technician</title>
+</head>
+<body>
+
+<div th:insert="~{fragments/general.html :: navbarra}"></div>
+
+<div class="container">
+    <div style="text-align: center;"><h1>Lista Tech</h1></div>
+    <a class="btn btn-primary mt-4 mb-4" th:href="@{'/technician/new'}">Nuevo Tech</a>
+    <div th:if="${msg != null}" th:text="${msg}" class="alert alert-success" role="alert"></div>
+    <div th:if="${err != null}" th:text="${err}" class="alert alert-danger" role="alert"></div>
+    <table class="table table-striped">
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Dni</th>
+            <th>Teléfono</th>
+            <th>Edad</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="tech,obj: ${listaTechnician}">
+            <td th:text="${obj.index + 1}"></td>
+            <td th:text="${tech.firstName}"></td>
+            <td th:text="${tech.lastName}"></td>
+            <td th:text="${tech.dni}"></td>
+            <td th:text="${tech.phone}"></td>
+            <td th:text="${tech.age}"></td>
+            <td><a class="btn btn-primary" th:href="@{'/technician/edit' + '?id=' + ${tech.id}}">Editar</a>
+            </td>
+            <td><a class="btn btn-danger" th:href="@{'/technician/delete' + '?id=' + ${tech.id}}">Borrar</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
