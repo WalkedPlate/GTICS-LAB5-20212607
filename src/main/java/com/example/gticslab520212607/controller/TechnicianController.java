@@ -57,6 +57,7 @@ public class TechnicianController {
                 attr.addFlashAttribute("msg", "Technician creado exitosamente");
 
                 technicianRepository.save(technician);
+
                 return "redirect:/technician";
             } else {
 
